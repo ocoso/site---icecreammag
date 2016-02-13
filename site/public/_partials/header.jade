@@ -1,16 +1,17 @@
-nav.navbar.navbar-default.navbar-fixed-top(role="navigation")
-    .container-fluid
-        .navbar-header
-            button.navbar-toggle(data-toggle="collapse", data-target="#navbar-top-collapse-1")
-                span.sr-only Toggle navigation
-                span.icon-bar
-                span.icon-bar
-                span.icon-bar
-            a.navbar-brand(href="#{baseUrl}/")= name
+#navbar
+  nav.navbar.navbar-default(role="navigation")
+      .container-fluid
+          .navbar-header
+              button.navbar-toggle(data-toggle="collapse", data-target="#navbar-top-collapse-1")
+                  span.sr-only Toggle navigation
+                  span.icon-bar
+                  span.icon-bar
+                  span.icon-bar
+          
+            
+            img(src="c/icm-vm_logo-ic.png", alt="Ice Cream Logo", class="logo")
 
-        .collapse.navbar-collapse#navbar-top-collapse-1
+          .collapse.navbar-collapse#navbar-top-collapse-1
             ul.nav.navbar-nav.navbar-right
-                li
-                    a(href="#{baseUrl}/docs") Documentation
-                li
-                    a(href="#{baseUrl}/showcase") Showcase
+              li
+                  a(href="#page-2") Jump

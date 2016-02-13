@@ -1,0 +1,330 @@
+//
+// Start IceCream Magazine Style
+//
+// Included in 'global' css
+//
+// Contains custom variable declarations
+//
+// -------------------------------------------------
+// Author: Oliver Costello
+// GitHub: https://github.com/ocoso/site---icecreammag.git
+// -------------------------------------------------
+
+// Variables
+//
+// -------------------------------------------------
+
+@brand-primary:         grey;
+@brand-secondary:       darkgrey;
+@brand-tertiary:        lightgrey;
+
+@header-primary:        #fff;
+@header-secondary:      #000;
+
+// Typography
+@text-primary:          @brand-secondary;
+@text-secondary:        @brand-tertiary;
+
+@letter-spacing:        1.2px;
+@font-ds:               ceil((@font-size-base * 5));
+@font-lg:               @font-size-large;
+@font-md:               @font-size-base;
+@font-sm:               @font-size-small;
+
+// Nav
+@nav-height:            0;
+
+@nav-background-jump:   transparent;
+@nav-border-jump:       #fff;
+@nav-background:        transparent;
+@nav-border:            @brand-primary;
+
+// Display pages
+@dsp-jmp:               grey;
+
+
+// Footer
+@footer-height:         50px;
+@footer-background:     @brand-primary;
+
+// Base
+//
+// -------------------------------------------------
+html,
+body {
+  height: 100%;
+}
+
+body {
+  position: relative;
+  padding-top: 0;
+  font-family: "Rubik", helvetica, arial, sans-serif;
+  letter-spacing: @letter-spacing;
+  color: @text-primary;
+}
+
+a {
+  color: @text-secondary;
+}
+
+// Navbar
+//
+// -------------------------------------------------
+
+
+#navbar{
+  z-index: 99999;
+  height: 50px;
+}
+
+.navbar {
+  margin-bottom: 0px;
+}
+
+.navbar-default {
+  z-index: 99999;
+  margin: 0;
+  background: transparent;
+  border-color: transparent;
+  .navbar-header {
+    border-color: @nav-background;
+  }
+  .navbar-collapse {
+    border-color: @nav-background;
+  }
+  .navbar-toggle {
+    top: 0;
+    margin-right: 28px;
+    border-color: @nav-border-jump;
+    background: @nav-background-jump;
+    &:hover, &:focus {
+      background: lighten(@brand-secondary, 25%);
+    }
+    .icon-bar {
+      background: @nav-border-jump;
+    }
+  }
+  .logo {
+    position: absolute;
+    opacity: 0;
+    width: auto;
+    height: 50px;
+  }
+  &.affix, &.affix .logo, &.affix .navbar-toggle, &.affix .navbar-toggle .icon-bar,
+  &.affix-top, &.affix-top .logo, &.affix-top .navbar-toggle, &.affix-top .navbar-toggle .icon-bar,
+  &.affix-bottom, &.affix-bottom .logo, &.affix-bottom .navbar-toggle {
+    -webkit-transition: all .5s ease-in-out;
+    transition: all .5s ease-in-out;
+  }
+  &.affix {
+    top: 0;
+    width: 100%;
+    min-height: 90px;
+    padding: 20px 0;
+    background: transparent;
+    &#navbar {
+      padding: 20px 0;
+    }
+    .logo {
+      opacity: 0;
+      height: 90px;
+    }
+    .navbar-toggle {
+      border-color: @nav-border;
+      background: @nav-background;
+      .icon-bar {
+        background: @nav-border;
+      }
+    }
+  }
+}
+
+// -------------------------------------------------
+
+// Main Layout
+//
+// -------------------------------------------------
+
+main {
+  display: initial;
+  height: 100%;
+  min-height: 100%;
+}
+
+// Cover Frame
+// full vp-height containers
+// -------------------------------------------------
+
+.cf-wrap {
+  display: table;
+  width: 100%; height: 100%;
+  min-height: 100%;
+  padding-top: @nav-height;
+}
+
+.cf-wrap-in {
+  display: table-cell;
+  vertical-align: top;
+}
+
+.cf-cc {
+  margin-right: auto;
+  margin-left: auto;
+  .in {
+    // optional
+  }
+}
+
+// Footer
+.mastfoot {
+  z-index: 10;
+  text-align: center;
+  color: @brand-secondary;
+}
+.footer {
+  position: relative;
+  z-index: 99;
+  padding-top: 1em;
+  min-height: @footer-height;
+  background: @footer-background;
+  text-align: center;
+}
+
+
+// -------------------------------------------------
+
+// Display pages
+//
+// -------------------------------------------------
+
+.dsp-in {
+  padding-top: 1px;
+}
+
+// Jump
+.dsp-jmp {
+  min-height: 1536px;
+  background: @dsp-jmp;
+  .logo {
+    img {
+      max-width: 100%;
+    }
+  }
+  .jmp-sl-1 {
+    display: table;
+    height: 100%;
+    .in {
+      position: relative;
+      top: 50px;
+      padding: 1em;
+      h1 {
+        margin: 0;
+      }
+    }
+    &.affix, &.affix h1,
+    &.affix-top, &.affix-top h1,
+    &.affix-bottom, &.affix-bottom h1, {
+      -webkit-transition: all .75s ease-in-out;
+      transition: all .75s ease-in-out;
+    }
+    &.affix, &.affix-bottom {
+      color: green;
+      width: 100%;
+      h1 {
+        font-size: @font-ds;
+      }
+    }
+    &.affix-bottom {
+      position: absolute;
+    }
+  }
+}
+
+// -------------------------------------------------
+
+// Media
+//
+// -------------------------------------------------
+
+@media (max-width: 767px) {
+  #navbar {
+    position: fixed;
+  }
+  .navbar-default {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 20px;
+    &.affix {
+      padding: 20px;
+      background: transparent;
+    }
+    .navbar-header {
+      position: fixed;
+      right: 15px;
+      display: inline-block;
+    }
+    .navbar-collapse {
+      position: absolute;
+      z-index: -1;
+      width: 100%;
+      margin: 0;
+      padding: 0 20px;
+      top: 0;
+      left: 0;
+      text-align: center;
+      background: @brand-tertiary;
+      li {
+        padding: 20px;
+      }
+    }
+    .navbar-toggle:hover {
+      background: @nav-background;
+    }
+    .push {
+      display: block;
+      min-height: 50px;
+    }
+  }
+  .navbar-nav {
+    margin: 3.5px -15px;
+  }
+  /* Pull out the footer */
+  .mastfoot {
+    height: 30px!important;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  }
+  .footer {
+    padding-top: .25em;
+  }
+}
+
+@media (min-width: 768px) {
+  /* Pull out the footer */
+  .mastfoot {
+    position: fixed;
+    bottom: 0;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  /* Start the vertical centering */
+  .site-wrapper-inner {
+    vertical-align: middle;
+  }
+  /* Handle the widths */
+  .mastfoot,
+  .footer
+  .cf-cc {
+    width: 100%; /* Must be percentage or pixels for horizontal alignment */
+  }
+}
+
+@media (min-width: 980px) {
+  .mastfoot,
+  .footer
+  .cf-cc {
+    width: 100%;
+  }
+}

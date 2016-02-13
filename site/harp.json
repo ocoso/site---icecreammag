@@ -1,8 +1,8 @@
 {
   "globals": {
     "baseUrl": "",
-    "name": "IceCream Magazine",
-    "author": "ocoso",
-    "brand-primary": "#000"
+    "year": 2016,
+    "name": "Company",
+    "author": "ocoso"
   }
 }

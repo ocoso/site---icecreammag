@@ -15,11 +15,24 @@ function getDocHeight() {
 $(function () {
 	$('.navbar-default').affix({
     offset: {
-      top: $("#jump").height()
+      top: $("#jump").height() - 1
     }
 	});
 })
+
 // Jump
+
+// pnl-a -- affix
+$(function () {
+	var vph = getDocHeight()
+	$('.pnl-1 .pnl-a').affix({
+    offset: {
+      top: 0,
+			bottom: vph - ($('#jump').height() - 90)
+    }
+  })
+})
+
 $(function () {
 	var vph = getDocHeight()
 	var jmp = ($("#jump").height() - vph);
@@ -55,4 +68,49 @@ $(document).ready(function() {
 			  });
 			});
 		}
+});
+
+// About
+$(function() {
+    var e = $("#about .copy");
+    $(window).scroll(function(noe) {
+        var scroll = $(window).scrollTop();
+				var above = ($('#jump').height());
+				var top = (above - ($(window).height()) / 2);
+        if ( scroll >= top ) {
+            e.removeClass('mt-0').addClass("mt-1");
+        } else {
+            e.removeClass("mt-1").addClass('mt-0');
+        }
+    });
+});
+
+$(function() {
+    var e = $("#about .feature");
+    $(window).scroll(function(noe) {
+        var scroll = $(window).scrollTop();
+				var above = ($('#jump').height());
+				var top = (above - ($(window).height()) / 2);
+        if ( scroll >= top ) {
+            e.removeClass('ml-0').addClass("ml-1");
+        } else {
+            e.removeClass("ml-1").addClass('ml-0');
+        }
+    });
+});
+
+
+// Issue-1
+$(function() {
+    var e = $("#issue-1 .feature");
+    $(window).scroll(function(noe) {
+        var scroll = $(window).scrollTop();
+				var above = ($('#jump').height() + ($('#about').height()));
+				var top = (above - ($(window).height()) / 2);
+        if ( scroll >= top ) {
+            e.removeClass('mt-0').addClass("mt-1");
+        } else {
+            e.removeClass("mt-1").addClass('mt-0');
+        }
+    });
 });

@@ -14,34 +14,42 @@
 //
 // -------------------------------------------------
 
-@brand-primary:         grey;
-@brand-secondary:       darkgrey;
+@brand-primary:         #2F2930;
+@brand-secondary:       #685af7;
 @brand-tertiary:        lightgrey;
 
 @header-primary:        #fff;
 @header-secondary:      #000;
 
 // Typography
-@text-primary:          @brand-secondary;
+@text-primary:          @brand-primary;
 @text-secondary:        @brand-tertiary;
+@text-link:             @brand-secondary;
+@text-link-hover:       @brand-tertiary;
 
 @letter-spacing:        1.2px;
-@font-ds:               ceil((@font-size-base * 5));
+@font-xxl:              ceil((@font-size-base * 6));
+@font-xl:               ceil((@font-size-base * 3));
+@font-ds:               ceil((@font-size-base * 2));
 @font-lg:               @font-size-large;
 @font-md:               @font-size-base;
 @font-sm:               @font-size-small;
 
 // Nav
 @nav-height:            0;
+@nav-height-init:       95px;
+@nav-height-expanded:   70px;
 
-@nav-background-jump:   transparent;
-@nav-border-jump:       #fff;
-@nav-background:        transparent;
-@nav-border:            @brand-primary;
+@nav-background-jump:   @brand-secondary;
+@nav-border-jump:       #999;
+@nav-background:        @brand-secondary;
+@nav-border:            #000;
 
 // Display pages
-@dsp-jmp:               grey;
+@jump-primary:          purple;
+@jump-secondary:        @brand-primary;
 
+@issue-1-primary:       #ECD1E0;
 
 // Footer
 @footer-height:         50px;
@@ -58,14 +66,112 @@ body {
 body {
   position: relative;
   padding-top: 0;
-  font-family: "Rubik", helvetica, arial, sans-serif;
+  font-family: "Yantramanav", helvetica, arial, sans-serif;
   letter-spacing: @letter-spacing;
   color: @text-primary;
 }
 
 a {
-  color: @text-secondary;
+  color: @text-link;
+  &:hover {
+    color: @text-link-hover;
+  }
 }
+
+h1, .h1 {
+  color: @brand-primary;
+}
+
+h1.title {
+  font-weight: 700;
+}
+
+.font-xxl {
+  font-size: @font-xxl;
+}
+
+.font-ic-ds {
+  font-size: @font-xl;
+}
+
+.font-ic-ds-lg {
+  font-size: @font-xl;
+}
+
+.icon-arrow {
+  &:hover, &:focus, &:active {
+    text-decoration: none;
+  }
+}
+
+// Basic colour changers
+
+.white {color:white;border-color:white;}
+.light {color:#f0f0f0;border-color:#f0f0f0;}
+.primary {color:@brand-primary;border-color:@brand-primary;}
+.secondary {color:@brand-secondary;border-color:@brand-secondary;}
+
+.opacity-50 {
+  opacity: .5;
+}
+
+// Basic typography changers
+
+.bold {
+  font-weight: bold;
+}
+
+// Global grid controlers
+.no-padding {
+  padding: 0!important;
+}
+
+// Lightbox
+
+.fl {
+  display: none;
+}
+
+.fl-frame {
+  overflow: hidden;
+}
+
+// Global custom affix controls
+.op-0 {
+  opacity: 0;
+  -webkit-transition: all 1.25s ease-in-out;
+  transition: all 1.25s ease-in-out;
+}
+.op-1 {
+  opacity: 1!important;
+  -webkit-transition: all 1.25s ease-in-out;
+  transition: all 1.25s ease-in-out;
+}
+.mt-0 {
+  margin-top: -200px!important;
+  opacity: 0;
+  -webkit-transition: all 1.25s ease-in-out;
+  transition: all 1.25s ease-in-out;
+}
+.mt-1 {
+  margin-top: 0px!important;
+  opacity: 1!important;
+  -webkit-transition: all 1.25s ease-in-out;
+  transition: all 1.25s ease-in-out;
+}
+.ml-0 {
+  right: -200px!important;
+  opacity: 0;
+  -webkit-transition: all 1.25s ease-in-out;
+  transition: all 1.25s ease-in-out;
+}
+.ml-1 {
+  right: 0px!important;
+  opacity: 1!important;
+  -webkit-transition: all 1.25s ease-in-out;
+  transition: all 1.25s ease-in-out;
+}
+
 
 // Navbar
 //
@@ -73,19 +179,32 @@ a {
 
 
 #navbar{
+  position: absolute;
   z-index: 99999;
   height: 50px;
+  width: 100%;
 }
 
 .navbar {
   margin-bottom: 0px;
 }
-
 .navbar-default {
+  top: -@nav-height-init;
   z-index: 99999;
   margin: 0;
-  background: transparent;
+  width: 100%;
+  background: @nav-background-jump;
   border-color: transparent;
+  opacity: 1;
+  padding: 20px 0;
+  .navbar-nav {
+    li {
+      font-size: @font-lg;
+      & a {
+        color: #fff;
+      }
+    }
+  }
   .navbar-header {
     border-color: @nav-background;
   }
@@ -117,11 +236,13 @@ a {
     transition: all .5s ease-in-out;
   }
   &.affix {
-    top: 0;
-    width: 100%;
-    min-height: 90px;
-    padding: 20px 0;
-    background: transparent;
+    top: 0; left: 0;
+    width: 50%;
+    max-width: 50%;
+    max-height: @nav-height-expanded;
+    padding: 5px 0 8px;
+    background: @nav-background;
+    opacity: .9;
     &#navbar {
       padding: 20px 0;
     }
@@ -139,13 +260,25 @@ a {
   }
 }
 
+.navbar-nav {
+  li {
+    font-size: @font-lg;
+    & a {
+      span {
+        position: relative;
+        top: 4px;
+      }
+    }
+  }
+}
+
 // -------------------------------------------------
 
 // Main Layout
 //
 // -------------------------------------------------
 
-main {
+main, header {
   display: initial;
   height: 100%;
   min-height: 100%;
@@ -175,6 +308,23 @@ main {
   }
 }
 
+// Branding
+.logo {
+  width: 100%;
+  height: 500px;
+  overflow: visible;
+  :after {
+    display: inline-block;
+    content: "";
+    background-image: url('/c/icm-vm_mag-icon-cut.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    width: 100%; height: 100%;
+    max-width: 500px;
+  }
+}
+
 // Footer
 .mastfoot {
   z-index: 10;
@@ -185,9 +335,13 @@ main {
   position: relative;
   z-index: 99;
   padding-top: 1em;
+  color: @brand-tertiary;
   min-height: @footer-height;
   background: @footer-background;
   text-align: center;
+  a {
+    color: @brand-secondary;
+  }
 }
 
 
@@ -197,46 +351,237 @@ main {
 //
 // -------------------------------------------------
 
-.dsp-in {
-  padding-top: 1px;
-}
-
 // Jump
-.dsp-jmp {
-  min-height: 1536px;
-  background: @dsp-jmp;
-  .logo {
-    img {
-      max-width: 100%;
+#jump {
+  position: relative;
+  z-index: 100;
+  background: @jump-primary;
+  background-image: url('/c/MG_5718.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.pnl-1 {
+  padding: 0; // important for affixing child elements
+  #pnl-a {
+    height: 145px;
+  }
+  .font-ic-ds, .font-ic-ds-lg {
+    position: relative;
+    opacity: 1;
+    left: 0;
+    -webkit-transition: all .5s ease-in-out;
+    transition: all .5s ease-in-out;
+    &:hover {
+      opacity: 1;
+      left: 20px;
+      color: @brand-primary;
     }
   }
-  .jmp-sl-1 {
-    display: table;
-    height: 100%;
-    .in {
-      position: relative;
-      top: 50px;
-      padding: 1em;
-      h1 {
-        margin: 0;
-      }
-    }
+  .pnl-a {
+    z-index: 10;
+    padding: 0;
+    opacity: 1;
+    box-shadow: 0px 0px @brand-primary;
     &.affix, &.affix h1,
     &.affix-top, &.affix-top h1,
-    &.affix-bottom, &.affix-bottom h1, {
-      -webkit-transition: all .75s ease-in-out;
-      transition: all .75s ease-in-out;
+    &.affix-bottom, &.affix-bottom h1 {
+      -webkit-transition: all 1.25s ease-in-out;
+      transition: all 1.25s ease-in-out;
     }
-    &.affix, &.affix-bottom {
-      color: green;
-      width: 100%;
-      h1 {
-        font-size: @font-ds;
-      }
+    &.affix {
+      color: inherit;
+      opacity: 1;
     }
     &.affix-bottom {
       position: absolute;
+      opacity: 0;
     }
+  }
+  .pnl-b {
+    position: absolute;
+    z-index: 4;
+    opacity: 1;
+    padding-top: 100px;
+    h1 {
+      font-size: @font-xl;
+    }
+    .pnl-img {
+      width: 100%;
+      height: auto;
+    }
+    blockquote {
+      border-width: 0;
+    }
+  }
+  .header {
+    margin-top: 50px;
+    margin-bottom: 50px;
+  }
+}
+.jmp-sl-1 {
+  display: table;
+  height: 100%;
+  .in {
+    position: relative;
+    padding: 1em;
+    top: 50px;
+    h1 {
+      margin: 0;
+    }
+  }
+  &.affix, &.affix h1,
+  &.affix-top, &.affix-top h1,
+  &.affix-bottom, &.affix-bottom h1 {
+    -webkit-transition: all .75s ease-in-out;
+    transition: all .75s ease-in-out;
+  }
+  &.affix, &.affix-bottom {
+    color: green;
+    width: 100%;
+    h1 {
+      font-size: @font-ds;
+    }
+  }
+  &.affix-bottom {
+    position: absolute;
+  }
+}
+.jmp-sl-2 {
+  position: absolute;
+  top: 200px;
+  left: 50%;
+}
+
+#about {
+  .copy {
+    position: relative;
+    height: 100%;
+    z-index: 9;
+    margin-bottom: 2em;
+    background: #fff;
+    .container-fluid {
+      padding-top: @nav-height-expanded;
+    }
+  }
+  p.lb {
+
+  }
+  .feature {
+    position: absolute;
+    height: 100%;
+    z-index: 10;
+    background: @jump-primary;
+    background-image: url('/c/SpreadMockUp2WBG.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+}
+
+#issue-1 {
+  .copy {
+    margin-bottom: 2em;
+  }
+  .feature-bg {
+    position: absolute;
+    z-index: 7;
+    height: 100%;
+    background: @issue-1-primary;
+  }
+  .feature {
+    position: absolute;
+    z-index: 8;
+    height: 100%;
+    background: @issue-1-primary;
+    background-image: url('/c/New Template Singe copy.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  .copy {
+    position: relative;
+    z-index: 5;
+    height: 100%;
+    background: #fff;
+    .container-fluid {
+      padding-top: @nav-height-expanded;
+    }
+  }
+  .pnl-1 {
+    position: absolute;
+    height: 50%;
+    background: @jump-primary;
+  }
+}
+
+#read {
+  .in {
+  }
+  p.lb {
+
+  }
+  .pub {
+    background: @brand-secondary;
+    iframe {
+      padding-top: @nav-height-expanded;
+    }
+  }
+  .feature {
+    position: absolute;
+    z-index: 4;
+    height: 100%;
+    background: @jump-primary;
+    background-image: url('/c/icm-c-1.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  .copy {
+    position: relative;
+    z-index: 5;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.33);
+    .container-fluid {
+      padding-top: @nav-height-expanded;
+    }
+  }
+  .pnl-1 {
+    position: absolute;
+    height: 50%;
+    background: @jump-primary;
+  }
+}
+
+#contact {
+  .in {
+  }
+  p.lb {
+
+  }
+  .feature {
+    position: absolute;
+    z-index: 4;
+    height: 100%;
+    background: @jump-primary;
+    background-image: url('/c/icm-c-1.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  .copy {
+    position: relative;
+    z-index: 5;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.33);
+    .container-fluid {
+      padding-top: @nav-height-expanded;
+    }
+  }
+  .pnl-1 {
+    position: absolute;
+    height: 50%;
+    background: @jump-primary;
   }
 }
 
@@ -250,11 +595,15 @@ main {
   #navbar {
     position: fixed;
   }
+  .navbar-mg {
+    height: @nav-height-init;
+  }
   .navbar-default {
     position: fixed;
     top: 0;
     width: 100%;
     padding: 20px;
+    background: transparent;
     &.affix {
       padding: 20px;
       background: transparent;
@@ -281,6 +630,9 @@ main {
     .navbar-toggle:hover {
       background: @nav-background;
     }
+    .logo {
+      display: none;
+    }
     .push {
       display: block;
       min-height: 50px;
@@ -299,9 +651,50 @@ main {
   .footer {
     padding-top: .25em;
   }
+
+  // Content pages
+  .cf-wrap-in {
+    display: block;
+  }
+  .feature {
+    position: relative!important;
+    height: 180px!important;
+  }
+  #jump {
+    background-position: bottom;
+    background-color: #fff;
+  }
+  .dsp-jmp {
+    .pnl-1 {
+      .header {
+        margin-top: -60px;
+      }
+    }
+  }
+  #about {
+    .copy {
+      .container-fluid {
+        padding-top: 1em;
+      }
+    }
+  }
+  #issue-1 {
+    .feature-bg {
+      display: none;
+    }
+    .copy {
+      .container-fluid {
+        padding-top: 1em;
+      }
+    }
+  }
 }
 
 @media (min-width: 768px) {
+  // fonts
+  .font-ic-ds {
+    font-size: @font-ds;
+  }
   /* Pull out the footer */
   .mastfoot {
     position: fixed;
@@ -319,12 +712,45 @@ main {
   .cf-cc {
     width: 100%; /* Must be percentage or pixels for horizontal alignment */
   }
+  .navbar-default {
+    &.affix {
+      width: 100%!important;
+      max-width: 100%!important;
+    }
+  }
+  .navbar-nav {
+    li {
+      font-size: @font-lg!important;
+    }
+  }
 }
 
-@media (min-width: 980px) {
+@media (min-width: 1080px) {
+  // fonts
+  .font-ic-ds {
+    font-size: @font-xl;
+  }
   .mastfoot,
   .footer
   .cf-cc {
     width: 100%;
+  }
+  .navbar-default {
+    &.affix {
+      width: 50%!important;
+      max-width: 50%!important;
+    }
+  }
+  .navbar-nav {
+    li {
+      font-size: @font-md!important;
+    }
+  }
+}
+@media (min-width: 1200px) {
+  .navbar-nav {
+    li {
+      font-size: @font-lg!important;
+    }
   }
 }

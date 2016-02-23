@@ -14,9 +14,9 @@
 //
 // -------------------------------------------------
 
-@brand-primary:         #2F2930;
-@brand-secondary:       #685af7;
-@brand-tertiary:        lightgrey;
+@brand-primary:         #040404;
+@brand-secondary:       #CCC;
+@brand-tertiary:        #666;
 
 @header-primary:        #fff;
 @header-secondary:      #000;
@@ -24,7 +24,7 @@
 // Typography
 @text-primary:          @brand-primary;
 @text-secondary:        @brand-tertiary;
-@text-link:             @brand-secondary;
+@text-link:             @brand-primary;
 @text-link-hover:       @brand-tertiary;
 
 @letter-spacing:        1.2px;
@@ -37,16 +37,16 @@
 
 // Nav
 @nav-height:            0;
-@nav-height-init:       95px;
+@nav-height-init:       90px;
 @nav-height-expanded:   70px;
 
-@nav-background-jump:   @brand-secondary;
+@nav-background-jump:   #fff;
 @nav-border-jump:       #999;
-@nav-background:        @brand-secondary;
+@nav-background:        #fff;
 @nav-border:            #000;
 
 // Display pages
-@jump-primary:          purple;
+@jump-primary:          #fff;
 @jump-secondary:        @brand-primary;
 
 @issue-1-primary:       #ECD1E0;
@@ -66,7 +66,7 @@ body {
 body {
   position: relative;
   padding-top: 0;
-  font-family: "Yantramanav", helvetica, arial, sans-serif;
+  font-family: "Rubik", helvetica, arial, sans-serif;
   letter-spacing: @letter-spacing;
   color: @text-primary;
 }
@@ -199,9 +199,22 @@ h1.title {
   padding: 20px 0;
   .navbar-nav {
     li {
-      font-size: @font-lg;
+      font-size: @font-md;
       & a {
-        color: #fff;
+        -webkit-transition: all .2s ease-in-out;
+        transition: all .2s ease-in-out;
+        color: @brand-primary;
+        bottom: 0;
+        &:hover {
+          -webkit-transition: all .2s ease-in-out;
+          transition: all .2s ease-in-out;
+          color: #ccc;
+          bottom: 5px;
+        }
+        &:active, &:focus {
+          color: @brand-tertiary;
+          bottom: 0;
+        }
       }
     }
   }
@@ -255,6 +268,27 @@ h1.title {
       background: @nav-background;
       .icon-bar {
         background: @nav-border;
+      }
+    }
+    .navbar-nav {
+      li {
+        font-size: @font-lg;
+        & a {
+          -webkit-transition: all .2s ease-in-out;
+          transition: all .2s ease-in-out;
+          color: @text-primary;
+          bottom: 0;
+          &:hover {
+            -webkit-transition: all .2s ease-in-out;
+            transition: all .2s ease-in-out;
+            color: @text-secondary;
+            bottom: 5px;
+          }
+          &:active, &:focus {
+            color: @text-link;
+            bottom: 0;
+          }
+        }
       }
     }
   }
@@ -311,12 +345,12 @@ main, header {
 // Branding
 .logo {
   width: 100%;
-  height: 500px;
+  height: 200px;
   overflow: visible;
   :after {
     display: inline-block;
     content: "";
-    background-image: url('/c/icm-vm_mag-icon-cut.svg');
+    background-image: url('../c/icm-vm_logo-ic.svg');
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
@@ -351,106 +385,67 @@ main, header {
 //
 // -------------------------------------------------
 
-// Jump
 #jump {
-  position: relative;
-  z-index: 100;
-  background: @jump-primary;
-  background-image: url('/c/MG_5718.jpg');
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-}
-.pnl-1 {
-  padding: 0; // important for affixing child elements
-  #pnl-a {
-    height: 145px;
+  .copy {
+    margin-bottom: 2em;
   }
-  .font-ic-ds, .font-ic-ds-lg {
+  .title {
     position: relative;
-    opacity: 1;
-    left: 0;
-    -webkit-transition: all .5s ease-in-out;
-    transition: all .5s ease-in-out;
-    &:hover {
-      opacity: 1;
-      left: 20px;
-      color: @brand-primary;
+    z-index: 11;
+    padding: 1em;
+    background: #fff;
+    a h1, a:hover {
+      font-size: @font-xxl;
+      font-weight: bold;
+      margin: 0;
+      text-decoration: none;
     }
   }
-  .pnl-a {
-    z-index: 10;
-    padding: 0;
-    opacity: 1;
-    box-shadow: 0px 0px @brand-primary;
-    &.affix, &.affix h1,
-    &.affix-top, &.affix-top h1,
-    &.affix-bottom, &.affix-bottom h1 {
-      -webkit-transition: all 1.25s ease-in-out;
-      transition: all 1.25s ease-in-out;
-    }
-    &.affix {
-      color: inherit;
-      opacity: 1;
-    }
-    &.affix-bottom {
-      position: absolute;
-      opacity: 0;
+  .socials {
+    position: relative;
+    z-index: 11;
+    padding: 1em;
+    a.social {
+      font-size: @font-size-large;
+      &:hover {
+        font-weight: normal;
+      }
+      span {
+        position: relative;
+        top: 2px;
+        padding-right: 5px;
+      }
     }
   }
-  .pnl-b {
+
+  .feature {
     position: absolute;
-    z-index: 4;
-    opacity: 1;
-    padding-top: 100px;
-    h1 {
-      font-size: @font-xl;
-    }
-    .pnl-img {
-      width: 100%;
-      height: auto;
+    padding: 0;
+    z-index: 10;
+    height: 100%;
+    background: @issue-1-primary;
+    background-image: url('../c/jump_bg_3.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  .copy {
+    position: relative;
+    z-index: 5;
+    height: 100%;
+    background: #fff;
+    .container-fluid {
+      padding-top: @nav-height-expanded;
     }
     blockquote {
-      border-width: 0;
+      border-left: 0;
     }
   }
-  .header {
-    margin-top: 50px;
-    margin-bottom: 50px;
-  }
-}
-.jmp-sl-1 {
-  display: table;
-  height: 100%;
-  .in {
-    position: relative;
-    padding: 1em;
-    top: 50px;
-    h1 {
-      margin: 0;
-    }
-  }
-  &.affix, &.affix h1,
-  &.affix-top, &.affix-top h1,
-  &.affix-bottom, &.affix-bottom h1 {
-    -webkit-transition: all .75s ease-in-out;
-    transition: all .75s ease-in-out;
-  }
-  &.affix, &.affix-bottom {
-    color: green;
-    width: 100%;
-    h1 {
-      font-size: @font-ds;
-    }
-  }
-  &.affix-bottom {
+  .pnl-1 {
     position: absolute;
+    height: 50%;
+    background: @jump-primary;
   }
-}
-.jmp-sl-2 {
-  position: absolute;
-  top: 200px;
-  left: 50%;
 }
 
 #about {
@@ -472,13 +467,23 @@ main, header {
     height: 100%;
     z-index: 10;
     background: @jump-primary;
-    background-image: url('/c/SpreadMockUp2WBG.jpg');
+    background-image: url('../c/about_ftr.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
   }
 }
-
+a.social {
+  font-size: inherit;
+  &:hover {
+    font-weight: normal;
+  }
+  span {
+    position: relative;
+    top: 2px;
+    padding-right: 5px;
+  }
+}
 #issue-1 {
   .copy {
     margin-bottom: 2em;
@@ -494,7 +499,7 @@ main, header {
     z-index: 8;
     height: 100%;
     background: @issue-1-primary;
-    background-image: url('/c/New Template Singe copy.jpg');
+    background-image: url('../c/issue_ftr.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -522,7 +527,7 @@ main, header {
 
   }
   .pub {
-    background: @brand-secondary;
+    background: #fff;
     iframe {
       padding-top: @nav-height-expanded;
     }
@@ -532,7 +537,7 @@ main, header {
     z-index: 4;
     height: 100%;
     background: @jump-primary;
-    background-image: url('/c/icm-c-1.jpg');
+    background-image: url('../c/icm-c-1.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -554,6 +559,9 @@ main, header {
 }
 
 #contact {
+  padding-bottom: 2em;
+  overflow: visible;
+  max-width: 100%;
   .in {
   }
   p.lb {
@@ -564,7 +572,7 @@ main, header {
     z-index: 4;
     height: 100%;
     background: @jump-primary;
-    background-image: url('/c/icm-c-1.jpg');
+    background-image: url('../c/jump_bg_2.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -605,8 +613,17 @@ main, header {
     padding: 20px;
     background: transparent;
     &.affix {
+      position: fixed;
+      right: 0;
+      max-width: 100%!important;
+      width: 100%!important;
       padding: 20px;
       background: transparent;
+      .navbar-nav {
+        li {
+          font-size: @font-md;
+        }
+      }
     }
     .navbar-header {
       position: fixed;
@@ -617,12 +634,13 @@ main, header {
       position: absolute;
       z-index: -1;
       width: 100%;
+      max-height: none!important;
       margin: 0;
       padding: 0 20px;
       top: 0;
       left: 0;
       text-align: center;
-      background: @brand-tertiary;
+      background: #f0f0f0;
       li {
         padding: 20px;
       }
@@ -658,11 +676,19 @@ main, header {
   }
   .feature {
     position: relative!important;
-    height: 180px!important;
+    min-height: 300px!important;
   }
   #jump {
     background-position: bottom;
     background-color: #fff;
+    .socials {
+      display: none;
+    }
+    .copy {
+      .link {
+        display: none;
+      }
+    }
   }
   .dsp-jmp {
     .pnl-1 {
@@ -686,6 +712,15 @@ main, header {
       .container-fluid {
         padding-top: 1em;
       }
+    }
+  }
+  #read {
+    padding-bottom: 6em;
+  }
+  a.social {
+    font-size: 12px;
+    &.fb {
+      font-size: @font-lg;
     }
   }
 }
@@ -720,7 +755,7 @@ main, header {
   }
   .navbar-nav {
     li {
-      font-size: @font-lg!important;
+      font-size: @font-md!important;
     }
   }
 }
@@ -737,8 +772,8 @@ main, header {
   }
   .navbar-default {
     &.affix {
-      width: 50%!important;
-      max-width: 50%!important;
+      width: 100%!important;
+      max-width: 100%!important;
     }
   }
   .navbar-nav {
@@ -747,10 +782,16 @@ main, header {
     }
   }
 }
-@media (min-width: 1200px) {
+@media (min-width: 1366px) {
   .navbar-nav {
     li {
-      font-size: @font-lg!important;
+      font-size: @font-md!important;
+    }
+  }
+  .navbar-default {
+    &.affix {
+      width: 50%!important;
+      max-width: 50%!important;
     }
   }
 }
